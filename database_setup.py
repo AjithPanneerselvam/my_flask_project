@@ -1,8 +1,17 @@
 import sys
 from  sqlalchemy import Column, ForeignKey, Integer, String
-from sqla[A[D[D[D[D[C[[B[C[C[C[Cchemy[D[D[D[D[Dlchemy[2~.ext.declarative import_base[D[D[D[D[D declarattive_base[D[D[D[D[D[D[D[D[D[3~[3~[C[C[[[C[C[C[C[C[Cive_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+
+class Restaurant(base):
+	__tablename__ = 'restaurant'
+
+class MenuItem(base):
+	__tablename__ = 'menu_item'
+
+
+
 Base = declarative_base()
 # insert at end of file
 
