@@ -1,35 +1,33 @@
-# Start of config code
-import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Date, Numeric
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-
+ 
 Base = declarative_base()
-#end of config code
 
-# Class definitions
 class Shelter(Base):
-	__tablename__ = 'shelter'
-
-	name = Column(String(30),nullable = False)
-	address = Column(String(50),nullable = False)
-	city = Column(String(20))
-	state = Column(String(20))
-	zipCode = Column(String(15))
-	website = Column(String(30))
-	id = Column(Integer,primary_key=True)
-
+    __tablename__ = 'shelter'
+    id = Column(Integer, primary_key = True)
+    name =Column(String(80), nullable = False)
+    address = Column(String(250))
+    city = Column(String(80))
+    state = Column(String(20))
+    zipCode = Column(String(10))
+    website = Column(String)
+    
 class Puppy(Base):
-	name = Column(String(30),nullable=False)
-	date of birth = Column(String(20))
-	gender = Column(String(7))
-	weight = Column(String(10))
-	shelter_id = Column(Integer,ForeignKey('shelter.id'))
-	shelter = relationship(Shelter)
+    __tablename__ = 'puppy'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
+    gender = Column(String(6), nullable = False)
+    dateOfBirth = Column(Date)
+    picture = Column(String)
+    shelter_id = Column(Integer, ForeignKey('shelter.id'))
+    shelter = relationship(Shelter)
+    weight = Column(Numeric(10))
 
-# insert at end of file
-engine = create_engine('sqlite:///puppies.db')
+
+engine = create_engine('sqlite:///puppyshelter.db')
+ 
 
 Base.metadata.create_all(engine)
-
