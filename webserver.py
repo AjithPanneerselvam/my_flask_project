@@ -1,4 +1,5 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from database_setup import Restaurant,MenuItem
 import cgi
 
 # import CRUD Operations from Lesson 1
@@ -18,6 +19,11 @@ class webServerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
             if self.path.endswith("/restaurants"):
+            	ins = Restaurant(name="KFC",id = 25)
+            	ins1 = Restaurant(name="McDocnalds",id=30)
+            	session.add(ins)
+            	session.add(ins1)
+            	session.commit()
                 restaurants = session.query(Restaurant).all()
                 output = ""
                 self.send_response(200)
